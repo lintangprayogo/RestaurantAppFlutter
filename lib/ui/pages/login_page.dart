@@ -97,7 +97,9 @@ class _LoginPageState extends State<LoginPage> {
                     color: mainColor,
                   )
                 : RaisedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(SingupPage());
+                    },
                     elevation: 0,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8)),

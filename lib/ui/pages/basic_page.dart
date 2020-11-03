@@ -36,14 +36,17 @@ class BasicPage extends StatelessWidget {
                       child: Row(
                         children: [
                           backButtonFunction != null
-                              ? Container(
-                                  width: 24,
-                                  height: 24,
-                                  margin: EdgeInsets.only(right: 26),
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          image: AssetImage(
-                                              'assets/back_arrow.png'))),
+                              ? GestureDetector(
+                                  onTap: backButtonFunction,
+                                  child: Container(
+                                    width: 24,
+                                    height: 24,
+                                    margin: EdgeInsets.only(right: 26),
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                            image: AssetImage(
+                                                'assets/back_arrow.png'))),
+                                  ),
                                 )
                               : SizedBox(),
                           Column(
