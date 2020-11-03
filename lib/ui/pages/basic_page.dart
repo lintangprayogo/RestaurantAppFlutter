@@ -22,17 +22,13 @@ class BasicPage extends StatelessWidget {
           Container(
             color: Colors.white,
           ),
-          SafeArea(
-              child: Container(
-            color: backColor ?? "FAFAFC".toColor(),
-          )),
+          SafeArea(child: Container(color: backColor ?? Colors.white)),
           SafeArea(
             child: ListView(
               children: [
                 Column(
                   children: [
                     Container(
-                      margin: EdgeInsets.only(bottom: defaultMargin),
                       padding: EdgeInsets.symmetric(horizontal: defaultMargin),
                       width: double.infinity,
                       height: 100,
@@ -60,7 +56,7 @@ class BasicPage extends StatelessWidget {
                                     fontSize: 22, fontWeight: FontWeight.w500),
                               ),
                               Text(
-                                header,
+                                subheader,
                                 style: GoogleFonts.poppins(
                                     color: greyColor,
                                     fontWeight: FontWeight.w300),
@@ -69,6 +65,11 @@ class BasicPage extends StatelessWidget {
                           )
                         ],
                       ),
+                    ),
+                    Container(
+                      height: defaultMargin,
+                      width: double.infinity,
+                      color: "FAFAFC".toColor(),
                     ),
                     child ?? SizedBox()
                   ],
