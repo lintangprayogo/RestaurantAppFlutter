@@ -46,9 +46,7 @@ class _FoodPageState extends State<FoodPage> {
             ],
           ),
         ),
-        //Middle
-        FoodItem(),
-        //Bottom
+        FoodItem(mockFood) //Middle
       ],
     );
   }
