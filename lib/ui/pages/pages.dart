@@ -12,3 +12,4 @@ part 'login_page.dart';
 part 'signup_page.dart';
 part 'address_page.dart';
 part 'main_page.dart';
+part 'food_page.dart';
