@@ -1,46 +1,30 @@
 part of 'pages.dart';
 
-class SingupPage extends StatefulWidget {
+class AddressPage extends StatefulWidget {
   @override
-  _SingupPageState createState() => _SingupPageState();
+  _AddressPageState createState() => _AddressPageState();
 }
 
-class _SingupPageState extends State<SingupPage> {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController nameController = TextEditingController();
+class _AddressPageState extends State<AddressPage> {
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController addressController = TextEditingController();
+  TextEditingController houseNumController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return BasicPage(
-      header: "Sign Up",
-      subheader: "Register and enjoy food",
+      header: "Address",
+      subheader: "Fill up your address ",
       backButtonFunction: () {
         Get.back();
       },
       child: Column(
         children: [
           Container(
-            width: 110,
-            height: 110,
-            margin: EdgeInsets.only(top: 26),
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("assets/photo_border.png"))),
-            child: Container(
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                      image: NetworkImage(
-                          "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60"),
-                      fit: BoxFit.cover)),
-            ),
-          ),
-          Container(
             width: double.infinity,
-            margin: EdgeInsets.fromLTRB(defaultMargin, 16, defaultMargin, 6),
+            margin: EdgeInsets.fromLTRB(defaultMargin, 26, defaultMargin, 6),
             child: Text(
-              "Full Name",
+              "Phone No.",
               style: blackFontStyle2,
             ),
           ),
@@ -52,18 +36,18 @@ class _SingupPageState extends State<SingupPage> {
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(color: Colors.black)),
               child: TextField(
-                controller: nameController,
+                controller: phoneController,
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintStyle: greyFontStyle,
-                  hintText: "Type your full name",
+                  hintText: "Type your phone number",
                 ),
               )),
           Container(
             width: double.infinity,
-            margin: EdgeInsets.fromLTRB(defaultMargin, 16, defaultMargin, 6),
+            margin: EdgeInsets.fromLTRB(defaultMargin, 26, defaultMargin, 6),
             child: Text(
-              "Email",
+              "Address",
               style: blackFontStyle2,
             ),
           ),
@@ -75,18 +59,18 @@ class _SingupPageState extends State<SingupPage> {
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(color: Colors.black)),
               child: TextField(
-                controller: emailController,
+                controller: addressController,
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintStyle: greyFontStyle,
-                  hintText: "Type your email address",
+                  hintText: "Type your address",
                 ),
               )),
           Container(
             width: double.infinity,
             margin: EdgeInsets.fromLTRB(defaultMargin, 16, defaultMargin, 6),
             child: Text(
-              "Password",
+              "House No.",
               style: blackFontStyle2,
             ),
           ),
@@ -98,29 +82,63 @@ class _SingupPageState extends State<SingupPage> {
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(color: Colors.black)),
               child: TextField(
-                controller: passwordController,
+                controller: houseNumController,
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintStyle: greyFontStyle,
-                  hintText: "Type your password",
+                  hintText: "Type your house number",
                 ),
               )),
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.fromLTRB(defaultMargin, 16, defaultMargin, 6),
+            child: Text(
+              "City",
+              style: blackFontStyle2,
+            ),
+          ),
+          Container(
+              width: double.infinity,
+              margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: Colors.black)),
+              child: DropdownButton(
+                  isExpanded: true,
+                  underline: SizedBox(),
+                  items: [
+                    DropdownMenuItem(
+                        child: Text(
+                      'Bandung',
+                      style: blackFontStyle3,
+                    )),
+                    DropdownMenuItem(
+                        child: Text(
+                      'Jakarta',
+                      style: blackFontStyle3,
+                    )),
+                    DropdownMenuItem(
+                        child: Text(
+                      'Surabaya',
+                      style: blackFontStyle3,
+                    ))
+                  ],
+                  onChanged: (item) {})),
           Container(
             width: double.infinity,
             margin: EdgeInsets.only(top: defaultMargin),
             height: 45,
             padding: EdgeInsets.symmetric(horizontal: 10),
             child: RaisedButton(
-              onPressed: () {
-                Get.to(AddressPage());
-              },
+              onPressed: () {},
               elevation: 0,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8)),
               color: mainColor,
               child: Center(
                   child: Text(
-                "Continue",
+                "Sign Up Now",
                 style: whiteFontStyle1,
               )),
             ),
