@@ -6,6 +6,7 @@ class FoodPage extends StatefulWidget {
 }
 
 class _FoodPageState extends State<FoodPage> {
+  int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -46,6 +47,7 @@ class _FoodPageState extends State<FoodPage> {
             ],
           ),
         ),
+        //middle
         Container(
           height: 258,
           width: double.infinity,
@@ -64,7 +66,43 @@ class _FoodPageState extends State<FoodPage> {
               )
             ],
           ),
-        ) //Middle
+        ),
+        //bottom
+        Container(
+          width: double.infinity,
+          color: Colors.white,
+          child: Column(
+            children: [
+              CustomTabBar(
+                selectedIndex: selectedIndex,
+                titles: ["New Food", "Popular", "Recommend"],
+                onSelected: (idx) {
+                  setState(() {
+                    selectedIndex = idx;
+                  });
+                },
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              Builder(builder: (_) {
+                String body = (selectedIndex == 0)
+                    ? "New Taste Body"
+                    : (selectedIndex == 1)
+                        ? "Popular Body"
+                        : "Recommend";
+                return Center(
+                    child: Text(
+                  body,
+                  style: blackFontStyle2,
+                ));
+              }),
+              SizedBox(
+                height: 80,
+              )
+            ],
+          ),
+        )
       ],
     );
   }
