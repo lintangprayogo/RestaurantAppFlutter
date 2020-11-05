@@ -46,7 +46,25 @@ class _FoodPageState extends State<FoodPage> {
             ],
           ),
         ),
-        FoodItem(mockFood) //Middle
+        Container(
+          height: 258,
+          width: double.infinity,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: [
+              Row(
+                children: mockfoods
+                    .map((e) => Padding(
+                          padding: EdgeInsets.only(
+                              left: (e == mockfoods.first) ? defaultMargin : 0,
+                              right: defaultMargin),
+                          child: FoodItem(e),
+                        ))
+                    .toList(),
+              )
+            ],
+          ),
+        ) //Middle
       ],
     );
   }
