@@ -24,7 +24,7 @@ List<Food> mockfoods = [
       id: 1,
       imageUrl:
           "https://i.pinimg.com/originals/6a/98/d7/6a98d79acdb7dd3368c69d9649cf5279.jpg",
-      name: "Sate Sayur Sultan",
+      name: "Sate Taichan",
       description: "Sate taichan terenak dari bandung",
       ingredients:
           "Ayam,Cabe rawit,Cabe merah keriting, Bawang merah,Bawang putih",
