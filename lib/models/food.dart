@@ -19,7 +19,6 @@ class Food extends Equatable {
       this.rate});
 
   @override
-  // TODO: implement props
   List<Object> get props =>
       [id, imageUrl, name, description, ingredients, price, rate];
 }
