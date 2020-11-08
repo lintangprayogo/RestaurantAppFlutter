@@ -2,7 +2,7 @@ part of 'theme.dart';
 
 const double defaultMargin = 24;
 Color greyColor = "8D92A3".toColor();
-Color mainColor = "e74c3c".toColor();
+Color mainColor = "ff7675".toColor();
 
 TextStyle greyFontStyle = GoogleFonts.poppins(
   color: greyColor,
