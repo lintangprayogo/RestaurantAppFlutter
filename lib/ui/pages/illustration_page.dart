@@ -25,8 +25,8 @@ class IllustrationPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            width: 150,
-            height: 150,
+            width: 180,
+            height: 180,
             margin: EdgeInsets.only(bottom: 50),
             decoration: BoxDecoration(
                 image: DecorationImage(
@@ -68,9 +68,9 @@ class IllustrationPage extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8)),
                       child: Text(
-                        buttonTitle2,
+                        buttonTitle2 ?? "title",
                         style: blackFontStyle3.copyWith(
-                            fontWeight: FontWeight.w500),
+                            fontWeight: FontWeight.w500, color: Colors.white),
                       )),
                 )
               : SizedBox(),
