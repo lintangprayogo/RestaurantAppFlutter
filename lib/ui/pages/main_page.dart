@@ -29,13 +29,9 @@ class _MainPageState extends State<MainPage> {
                 });
               },
               children: [
-                Center(
-                  child: FoodPage(),
-                ),
-                OrderHistoryPage(),
-                Center(
-                  child: Text("Profile"),
-                ),
+                Center(child: FoodPage()),
+                Center(child: OrderHistoryPage()),
+                Center(child: ProfilPage())
               ],
             ),
           ),
