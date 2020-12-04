@@ -1,5 +1,7 @@
 part of 'models.dart';
 
+enum FoodType { new_food, popular, recommended }
+
 class Food extends Equatable {
   final int id;
   final String imageUrl;
@@ -8,6 +10,7 @@ class Food extends Equatable {
   final String ingredients;
   final int price;
   final double rate;
+  final List<FoodType> types;
 
   Food(
       {this.id,
@@ -16,7 +19,8 @@ class Food extends Equatable {
       this.description,
       this.ingredients,
       this.price,
-      this.rate});
+      this.rate,
+      this.types = const []});
 
   @override
   List<Object> get props =>
