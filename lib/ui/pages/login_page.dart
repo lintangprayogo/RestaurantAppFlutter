@@ -6,12 +6,11 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
-    TextEditingController emailController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
-    bool isLoading = false;
-
     return BasicPage(
       header: "Login",
       subheader: "Find The Amazing Food",
@@ -69,12 +68,43 @@ class _LoginPageState extends State<LoginPage> {
             height: 45,
             padding: EdgeInsets.symmetric(horizontal: 10),
             child: isLoading
-                ? SpinKitFadingCircle(
-                    size: 45,
-                    color: mainColor,
-                  )
+                ? loadingIndicator
                 : RaisedButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      setState(() {
+                        isLoading = true;
+                      });
+                      await context.bloc<UserCubit>().signIn(
+                          emailController.text, passwordController.text);
+                      UserState state = context.bloc<UserCubit>().state;
+                      if (state is UserLoaded) {
+                        context.bloc<FoodCubit>();
+                        context.bloc<TransactionCubit>();
+                        Get.to(MainPage());
+                      } else {
+                        Get.snackbar("", "",
+                            backgroundColor: "D9435E".toColor(),
+                            titleText: Text(
+                              "Login Failed",
+                              style: GoogleFonts.poppins(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                            icon: Icon(
+                              MdiIcons.closeCircleOutline,
+                              color: Colors.white,
+                            ),
+                            messageText: Text(
+                              (state as UserFailed).msg,
+                              style: GoogleFonts.poppins(
+                                color: Colors.white,
+                              ),
+                            ));
+                        setState(() {
+                          isLoading = false;
+                        });
+                      }
+                    },
                     elevation: 0,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8)),
@@ -92,10 +122,7 @@ class _LoginPageState extends State<LoginPage> {
             height: 45,
             padding: EdgeInsets.symmetric(horizontal: 10),
             child: isLoading
-                ? SpinKitFadingCircle(
-                    size: 45,
-                    color: mainColor,
-                  )
+                ? loadingIndicator
                 : RaisedButton(
                     onPressed: () {
                       Get.to(SingupPage());

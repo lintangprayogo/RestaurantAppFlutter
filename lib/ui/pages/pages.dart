@@ -1,15 +1,18 @@
 import 'dart:math';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:restaurantappflutter/cubit/cubit.dart';
+import 'package:restaurantappflutter/cubit/transaction_cubit.dart';
+import 'package:restaurantappflutter/cubit/user_cubit.dart';
 import 'package:restaurantappflutter/models/models.dart';
 import 'package:restaurantappflutter/shared/shared.dart';
 import 'package:restaurantappflutter/ui/widgets/widgets.dart';
 import 'package:supercharged/supercharged.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 part 'basic_page.dart';
 part 'login_page.dart';
 part 'signup_page.dart';
