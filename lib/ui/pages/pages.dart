@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:restaurantappflutter/models/models.dart';
-import 'package:restaurantappflutter/shared/theme.dart';
+import 'package:restaurantappflutter/shared/shared.dart';
 import 'package:restaurantappflutter/ui/widgets/widgets.dart';
 import 'package:supercharged/supercharged.dart';
 import 'package:flutter/cupertino.dart';
