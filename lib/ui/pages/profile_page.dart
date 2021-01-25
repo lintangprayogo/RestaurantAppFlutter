@@ -37,10 +37,10 @@ class _ProfilPageState extends State<ProfilPage> {
                               fit: BoxFit.cover)),
                     ),
                   ),
-                  Text((context.bloc<UserCubit>().state as UserLoaded).user.name,
+                  Text((context.read<UserCubit>().state as UserLoaded).user.name,
                       style: GoogleFonts.poppins(
                           fontSize: 18, color: Colors.black)),
-                  Text((context.bloc<UserCubit>().state as UserLoaded).user.email,
+                  Text((context.read<UserCubit>().state as UserLoaded).user.email,
                       style:
                           greyFontStyle.copyWith(fontWeight: FontWeight.w300)),
                 ],
