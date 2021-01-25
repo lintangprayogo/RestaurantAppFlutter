@@ -37,7 +37,8 @@ List<Food> mockFoods = [
       ingredients:
           "Ayam,Cabe rawit,Cabe merah keriting, Bawang merah,Bawang putih",
       price: 150000,
-      rate: 4.2),
+      rate: 4.2,
+      types: [FoodType.new_food, FoodType.recommended, FoodType.popular]),
   Food(
       id: 2,
       imageUrl:
@@ -56,7 +57,8 @@ List<Food> mockFoods = [
           "Salad ala mexico yang kaya akan serat dan vitamin. Seluruh bahan diambil dari Mexico sehingga akan memiliki cita rasa yang original.",
       ingredients: "Jagung, Selada, Tomat Ceri, Keju, Wortel",
       price: 105900,
-      rate: 3.9),
+      rate: 3.9,
+       types: [FoodType.new_food]),
   Food(
       id: 4,
       imageUrl:
@@ -66,7 +68,8 @@ List<Food> mockFoods = [
           "Sup tomat pedas yang unik ini cocok banget buat kalian-kalian yang suka pedas namun ingin tetap sehat. Rasanya yang unik akan memanjakan lidah Anda.",
       ingredients: "Tomat, Seledri, Kacang Tanah, Labu, Garam, Gula",
       price: 60000,
-      rate: 4.9),
+      rate: 4.9,
+      types: [FoodType.recommended]),
   Food(
       id: 5,
       imageUrl:

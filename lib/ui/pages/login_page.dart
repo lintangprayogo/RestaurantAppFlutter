@@ -78,8 +78,8 @@ class _LoginPageState extends State<LoginPage> {
                           emailController.text, passwordController.text);
                       UserState state = context.read<UserCubit>().state;
                       if (state is UserLoaded) {
-                        context.read<FoodCubit>();
-                        context.read<TransactionCubit>();
+                        context.read<FoodCubit>().getFoods();
+                        context.read<TransactionCubit>().getTransactions();
                         Get.to(MainPage());
                       } else {
                         Get.snackbar("", "",

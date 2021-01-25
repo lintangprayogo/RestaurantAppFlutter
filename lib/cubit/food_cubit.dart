@@ -7,8 +7,10 @@ part 'food_state.dart';
 
 class FoodCubit extends Cubit<FoodState> {
   FoodCubit() : super(FoodInitial());
+
   Future<void> getFoods() async {
     BaseApiResponse<List<Food>> result = await FoodService.getFoods();
+
     if (result.value != null) {
       emit(FoodLoaded(result.value));
     } else {
