@@ -164,7 +164,7 @@ class _FoodDetailPageState extends State<FoodDetailPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Total Price",
+                              "Price",
                               style: greyFontStyle.copyWith(fontSize: 13),
                             ),
                             Text(
@@ -172,7 +172,7 @@ class _FoodDetailPageState extends State<FoodDetailPage> {
                                       symbol: "IDR",
                                       decimalDigits: 0,
                                       locale: "id-ID")
-                                  .format(widget.transaction.food.price),
+                                  .format(widget.transaction.food.price*quantity),
                               style: blackFontStyle2.copyWith(fontSize: 18),
                             )
                           ],
@@ -181,7 +181,13 @@ class _FoodDetailPageState extends State<FoodDetailPage> {
                           width: 163,
                           height: 45,
                           child: RaisedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.to(PaymentPage(
+                                  transaction: widget.transaction.copyWith(
+                                      quantity: quantity,
+                                      total: quantity *
+                                          widget.transaction.food.price)));
+                            },
                             color: "2ecc71".toColor(),
                             elevation: 0,
                             shape: RoundedRectangleBorder(

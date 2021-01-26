@@ -12,8 +12,12 @@ class SuccessOrderPage extends StatelessWidget {
         imgPath: "assets/bike.png",
         buttonTitle1: "Order Another Foods",
         buttonTitle2: "View My Orders",
-        onTap1: () {},
-        onTap2: () {},
+        onTap1: () {
+          Get.offAll(MainPage());
+        },
+        onTap2: () {
+          Get.offAll(MainPage(initPage:1));
+        },
       ),
     );
   }
