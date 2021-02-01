@@ -9,6 +9,8 @@ class _SingupPageState extends State<SingupPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController nameController = TextEditingController();
+  User user;
+  File picFile;
   @override
   Widget build(BuildContext context) {
     return BasicPage(
@@ -19,21 +21,37 @@ class _SingupPageState extends State<SingupPage> {
       },
       child: Column(
         children: [
-          Container(
-            width: 110,
-            height: 110,
-            margin: EdgeInsets.only(top: 26),
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("assets/photo_border.png"))),
+          GestureDetector(
+            onTap: () async {
+              PickedFile pickedFile =
+                  await ImagePicker().getImage(source: ImageSource.gallery);
+              if (pickedFile != null) {
+                picFile = File(pickedFile.path);
+              }
+              setState(() {});
+            },
             child: Container(
+              width: 110,
+              height: 110,
+              margin: EdgeInsets.only(top: 26),
+              padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
-                  shape: BoxShape.circle,
                   image: DecorationImage(
-                      image: NetworkImage(
-                          "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60"),
-                      fit: BoxFit.cover)),
+                      image: AssetImage("assets/photo_border.png"))),
+              child: (!picFile.isNull)
+                  ? Container(
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                              image: FileImage(picFile), fit: BoxFit.cover)),
+                    )
+                  : Container(
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                              image: AssetImage("assets/photo.png"),
+                              fit: BoxFit.cover)),
+                    ),
             ),
           ),
           Container(
@@ -98,6 +116,7 @@ class _SingupPageState extends State<SingupPage> {
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(color: Colors.black)),
               child: TextField(
+                obscureText: true,
                 controller: passwordController,
                 decoration: InputDecoration(
                   border: InputBorder.none,
@@ -112,7 +131,13 @@ class _SingupPageState extends State<SingupPage> {
             padding: EdgeInsets.symmetric(horizontal: 10),
             child: RaisedButton(
               onPressed: () {
-                Get.to(AddressPage());
+                Get.to(AddressPage(
+                    User(
+                      name: nameController.text,
+                      email: emailController.text,
+                    ),
+                    passwordController.text,
+                    picFile));
               },
               elevation: 0,
               shape: RoundedRectangleBorder(

@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'dart:io';
 import 'package:equatable/equatable.dart';
 import 'package:restaurantappflutter/models/models.dart';
 import 'package:restaurantappflutter/services/services.dart';
@@ -14,6 +15,28 @@ class UserCubit extends Cubit<UserState> {
       emit(UserLoaded(result.value));
     } else {
       emit(UserFailed(result.msg));
+    }
+  }
+
+  Future<void> signUp(User user, String password, File picFile) async {
+    BaseApiResponse<User> result =
+        await UserService.signUp(user, password, picFile: picFile);
+
+    if (result.value != null) {
+      emit(UserLoaded(result.value));
+    } else {
+      emit(UserFailed(result.msg));
+    }
+  }
+
+  Future<void> updateProfilePicture(File pictureFile) async {
+    BaseApiResponse<String> result =
+        await UserService.uploadPicture(pictureFile);
+
+    if (result.value != null) {
+      emit(UserLoaded((state as UserLoaded).user.copyWith(
+          picturePath: "http://foodmartketapi.lintangprayogo.xyz/storage/" +
+              result.value)));
     }
   }
 }

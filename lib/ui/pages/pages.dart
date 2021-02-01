@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,6 +14,7 @@ import 'package:supercharged/supercharged.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'dart:io';
 part 'basic_page.dart';
 part 'login_page.dart';
 part 'signup_page.dart';
@@ -26,3 +28,4 @@ part 'success_order_page.dart';
 part 'success_sign_up_page.dart';
 part 'order_history_page.dart';
 part 'profile_page.dart';
+
