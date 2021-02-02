@@ -1,11 +1,30 @@
 part of 'services.dart';
 
 class UserService {
-  static Future<BaseApiResponse<User>> sigIn(
-      String email, String password) async {
-    await Future.delayed(Duration(milliseconds: 500));
-    return BaseApiResponse(value: mockUser);
-    //return BaseApiResponse(msg: "Wrong email or password !!!!!");
+  static Future<BaseApiResponse<User>> sigIn(String email, String password,
+      {http.Client client}) async {
+    if (client == null) {
+      client = http.Client();
+    }
+    String url = BASE_URL + 'login';
+
+    var response = await client.post(url,
+        headers: {"Content-Type": "application/json"},
+        body:
+            jsonEncode(<String, String>{'email': email, 'password': password}));
+
+    if (response.statusCode != 200) {
+      return BaseApiResponse(msg: 'Please try again');
+    }
+    var data = jsonDecode(response.body);
+    User.token = data['data']['access_token'];
+    User value = User.fromJson(data['data']['user']);
+    value=value.copyWith(
+            picturePath:
+                "http://foodmartketbackend.lintangprayogo.xyz/storage/app/public/" +
+                    value.picturePath);
+
+    return BaseApiResponse(value: value);
   }
 
   static Future<BaseApiResponse<User>> signUp(User user, String password,
@@ -39,7 +58,7 @@ class UserService {
       if (result.value != null) {
         value = user.copyWith(
             picturePath:
-                "http://foodmartketbackend.lintangprayogo.xyz/storage/" +
+                "http://foodmartketbackend.lintangprayogo.xyz/storage/app/public/" +
                     result.value);
       } else {
         value = user.copyWith(picturePath: data['profile_photo_url']);

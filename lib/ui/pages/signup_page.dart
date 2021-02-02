@@ -131,7 +131,6 @@ class _SingupPageState extends State<SingupPage> {
             padding: EdgeInsets.symmetric(horizontal: 10),
             child: RaisedButton(
               onPressed: () {
-                developer.log("email" + emailController.text);
                 Get.to(AddressPage(
                     User(
                       name: nameController.text,

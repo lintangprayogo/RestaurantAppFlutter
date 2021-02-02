@@ -35,8 +35,9 @@ class UserCubit extends Cubit<UserState> {
 
     if (result.value != null) {
       emit(UserLoaded((state as UserLoaded).user.copyWith(
-          picturePath: "http://foodmartketapi.lintangprayogo.xyz/storage/" +
-              result.value)));
+          picturePath:
+              "http://foodmartketbackend.lintangprayogo.xyz/storage/app/public/" +
+                  result.value)));
     }
   }
 }
