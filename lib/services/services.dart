@@ -8,4 +8,4 @@ part 'user_services.dart';
 part 'food_services.dart';
 part 'transaction_services.dart';
 
-String BASE_URL = 'http://foodmartketapi.lintangprayogo.xyz/api/';
+String BASE_URL = 'http://foodmartketbackend.lintangprayogo.xyz/api/';

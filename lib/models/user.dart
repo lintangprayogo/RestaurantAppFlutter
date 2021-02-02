@@ -20,7 +20,7 @@ class User extends Equatable {
       this.phoneNumber,
       this.city,
       this.picturePath});
-      
+
   factory User.fromJson(Map<String, dynamic> data) => User(
         id: data['id'],
         name: data['name'],
@@ -29,7 +29,7 @@ class User extends Equatable {
         houseNumber: data['houseNumber'],
         phoneNumber: data['phoneNumber'],
         city: data['city'],
-        picturePath: data['profile_photo_url'],
+        picturePath: data['profile_photo_path'],
       );
 
   User copyWith({
@@ -45,11 +45,12 @@ class User extends Equatable {
     return User(
         id: id ?? this.id,
         name: name ?? this.name,
+        email: email ?? this.email,
         address: address ?? this.address,
         houseNumber: houseNumber ?? this.houseNumber,
         phoneNumber: phoneNumber ?? this.phoneNumber,
         city: city ?? this.city,
-        picturePath: city ?? this.picturePath);
+        picturePath: picturePath ?? this.picturePath);
   }
 
   @override

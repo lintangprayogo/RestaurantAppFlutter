@@ -37,9 +37,12 @@ class UserService {
     if (picFile != null) {
       BaseApiResponse<String> result = await uploadPicture(picFile);
       if (result.value != null) {
-        user.copyWith(
-            picturePath: "http://foodmartketapi.lintangprayogo.xyz/storage/" +
-                result.value);
+        value = user.copyWith(
+            picturePath:
+                "http://foodmartketbackend.lintangprayogo.xyz/storage/" +
+                    result.value);
+      } else {
+        value = user.copyWith(picturePath: data['profile_photo_url']);
       }
     }
 
@@ -48,29 +51,28 @@ class UserService {
 
   static Future<BaseApiResponse<String>> uploadPicture(File picFile,
       {http.MultipartRequest request}) async {
-    String url = BASE_URL + 'register';
+    String url = BASE_URL + 'user/photo';
     var uri = Uri.parse(url);
 
     if (request == null) {
-      request = http.MultipartRequest('POST', uri)
-        ..headers['Content-Type'] = 'application/json'
-        ..headers['Authorization'] = 'Bearer ${User.token}';
+      request = http.MultipartRequest("POST", uri)
+        ..headers["Content-Type"] = "application/json"
+        ..headers["Authorization"] = "Bearer ${User.token}";
+    }
 
-      var multipartFile =
-          await http.MultipartFile.fromPath('file', picFile.path);
-      request.files.add(multipartFile);
-      var response = await request.send();
+    var multipartFile = await http.MultipartFile.fromPath('file', picFile.path);
+    request.files.add(multipartFile);
 
-      if (response.statusCode == 200) {
-        String responseBody = await response.stream.bytesToString();
-        var data = jsonDecode(responseBody);
+    var response = await request.send();
 
-        String imagePath = data['data'][0];
+    if (response.statusCode == 200) {
+      String responseBody = await response.stream.bytesToString();
+      var data = jsonDecode(responseBody);
 
-        return BaseApiResponse(value: imagePath);
-      } else {
-        return BaseApiResponse(msg: 'Uploading Profile Picture Failed');
-      }
+      String imagePath = data['data'][0];
+      return BaseApiResponse(value: imagePath);
+    } else {
+      return BaseApiResponse(msg: 'Uploading Profile Picture Failed');
     }
   }
 }
