@@ -6,7 +6,7 @@ class UserService {
     if (client == null) {
       client = http.Client();
     }
-    String url = BASE_URL + 'login';
+    String url = baseUrl + 'login';
 
     var response = await client.post(url,
         headers: {"Content-Type": "application/json"},
@@ -32,7 +32,7 @@ class UserService {
     if (client == null) {
       client = http.Client();
     }
-    String url = BASE_URL + 'register';
+    String url = baseUrl + 'register';
     var response = await client.post(url,
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode(<String, String>{
@@ -70,7 +70,7 @@ class UserService {
 
   static Future<BaseApiResponse<String>> uploadPicture(File picFile,
       {http.MultipartRequest request}) async {
-    String url = BASE_URL + 'user/photo';
+    String url = baseUrl + 'user/photo';
     var uri = Uri.parse(url);
 
     if (request == null) {

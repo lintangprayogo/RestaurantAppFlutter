@@ -1,5 +1,4 @@
 
-import 'dart:developer' as developer;
 import 'dart:math';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';

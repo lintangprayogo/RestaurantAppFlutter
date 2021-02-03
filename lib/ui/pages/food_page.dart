@@ -68,13 +68,14 @@ class _FoodPageState extends State<FoodPage> {
                             children: state.foodList
                                 .map((e) => Padding(
                                       padding: EdgeInsets.only(
-                                          left: (e == mockFoods.first)
+                                          left: (e == state.foodList[0])
                                               ? defaultMargin
                                               : 0,
                                           right: defaultMargin),
                                       child: GestureDetector(
                                           onTap: () {
-                                            Get.to(FoodDetailPage(
+                                            Get.to(
+                                              FoodDetailPage(
                                               transaction: Transaction(
                                                   food: e,
                                                   user: (context
