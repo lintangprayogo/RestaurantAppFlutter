@@ -19,10 +19,9 @@ class UserService {
     var data = jsonDecode(response.body);
     User.token = data['data']['access_token'];
     User value = User.fromJson(data['data']['user']);
-    value=value.copyWith(
-            picturePath:
-                "http://foodmartketbackend.lintangprayogo.xyz/storage/app/public/" +
-                    value.picturePath);
+
+    if (value.picturePath != null)
+      value = value.copyWith(picturePath:"http://foodmartketbackend.lintangprayogo.xyz/storage/app/public/${value.picturePath}");
 
     return BaseApiResponse(value: value);
   }

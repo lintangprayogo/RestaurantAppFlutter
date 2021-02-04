@@ -66,9 +66,15 @@ class OrderListItem extends StatelessWidget {
                           ? Text(
                               'On Delivery',
                               style: GoogleFonts.poppins(
-                                  color: '1ABC9C'.toColor(), fontSize: 10),
+                                  color: '0984e3'.toColor(), fontSize: 10),
                             )
-                          : SizedBox()
+                          : (transaction.status == TransactionStatus.delivered)
+                              ? Text(
+                                  'Delivered',
+                                  style: GoogleFonts.poppins(
+                                      color: '00b894'.toColor(), fontSize: 10),
+                                )
+                              : SizedBox()
             ],
           ),
         )

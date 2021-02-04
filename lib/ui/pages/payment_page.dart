@@ -326,15 +326,15 @@ class _PaymentPageState extends State<PaymentPage> {
                     child: RaisedButton(
                       onPressed: () async {
                         isLoading = true;
+                        setState(() {});
                         bool result = await context
                             .read<TransactionCubit>()
                             .submitTransaction(widget.transaction);
                         if (result) {
                           Get.to(SuccessOrderPage());
                         } else {
-                          setState(() {
-                            isLoading = false;
-                          });
+                          isLoading = false;
+                          setState(() {});
                           Get.snackbar("", "",
                               backgroundColor: "D9435E".toColor(),
                               titleText: Text(

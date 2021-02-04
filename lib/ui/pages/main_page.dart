@@ -14,7 +14,7 @@ class _MainPageState extends State<MainPage> {
   void initState() {
     super.initState();
     selectedPage = widget.initPage;
-    pageController = PageController(initialPage: 0);
+    pageController = PageController(initialPage: selectedPage);
   }
 
   @override
