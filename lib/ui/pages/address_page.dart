@@ -7,6 +7,24 @@ class AddressPage extends StatefulWidget {
 
   AddressPage(this.user, this.password, this.pictureFile);
 
+  void showSnackBar(String msg) {
+    Get.snackbar("", "",
+        backgroundColor: "D9435E".toColor(),
+        icon: Icon(
+          MdiIcons.closeCircleOutline,
+          color: Colors.white,
+        ),
+        titleText: Text(
+          "Invalid Format",
+          style: GoogleFonts.poppins(
+              color: Colors.white, fontWeight: FontWeight.w600),
+        ),
+        messageText: Text(
+          msg,
+          style: GoogleFonts.poppins(color: Colors.white),
+        ));
+  }
+
   @override
   _AddressPageState createState() => _AddressPageState();
 }
@@ -58,6 +76,7 @@ class _AddressPageState extends State<AddressPage> {
                   border: InputBorder.none,
                   hintStyle: greyFontStyle,
                   hintText: 'Type your phone number'),
+                  keyboardType: TextInputType.number,
             ),
           ),
           Container(
@@ -150,6 +169,19 @@ class _AddressPageState extends State<AddressPage> {
                   )
                 : RaisedButton(
                     onPressed: () async {
+                      if (addressController.text.isNullOrBlank |
+                          houseNumController.text.isNullOrBlank |
+                          phoneController.text.isNullOrBlank) {
+                        widget.showSnackBar("Please Input All The Fields  !!!");
+                        return;
+                      }
+
+                      if (phoneController.text.length<12 || phoneController.text.length>12) {
+                        widget.showSnackBar("Please Input Valid Phone Number");
+                        return;
+                      }
+
+
                       User user = widget.user.copyWith(
                           phoneNumber: phoneController.text,
                           address: addressController.text,
@@ -160,8 +192,9 @@ class _AddressPageState extends State<AddressPage> {
                         isLoading = true;
                       });
 
-                      await context.read<UserCubit>().signUp(
-                          user, widget.password,widget.pictureFile);
+                      await context
+                          .read<UserCubit>()
+                          .signUp(user, widget.password, widget.pictureFile);
 
                       UserState state = context.read<UserCubit>().state;
 
@@ -177,7 +210,7 @@ class _AddressPageState extends State<AddressPage> {
                               color: Colors.white,
                             ),
                             titleText: Text(
-                              "Sign In Failed",
+                              "Sign Up Failed",
                               style: GoogleFonts.poppins(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w600),

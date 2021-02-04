@@ -327,11 +327,11 @@ class _PaymentPageState extends State<PaymentPage> {
                       onPressed: () async {
                         isLoading = true;
                         setState(() {});
-                        bool result = await context
+                        String result = await context
                             .read<TransactionCubit>()
                             .submitTransaction(widget.transaction);
-                        if (result) {
-                          Get.to(SuccessOrderPage());
+                        if (result !=null) {
+                          Get.to(PaymentMethodPage(result));
                         } else {
                           isLoading = false;
                           setState(() {});

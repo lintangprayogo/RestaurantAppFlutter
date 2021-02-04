@@ -3,6 +3,23 @@ part of 'pages.dart';
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
+  void showSnackBar(String msg) {
+    Get.snackbar("", "",
+        backgroundColor: "D9435E".toColor(),
+        icon: Icon(
+          MdiIcons.closeCircleOutline,
+          color: Colors.white,
+        ),
+        titleText: Text(
+          "Invalid Format",
+          style: GoogleFonts.poppins(
+              color: Colors.white, fontWeight: FontWeight.w600),
+        ),
+        messageText: Text(
+          msg,
+          style: GoogleFonts.poppins(color: Colors.white),
+        ));
+  }
 }
 
 class _LoginPageState extends State<LoginPage> {
@@ -72,6 +89,12 @@ class _LoginPageState extends State<LoginPage> {
                 ? loadingIndicator
                 : RaisedButton(
                     onPressed: () async {
+                      if (emailController.text.isNullOrBlank |
+                          passwordController.text.isNullOrBlank) {
+                        widget.showSnackBar("Please Input All The Fields !!!");
+                        return;
+                      }
+
                       setState(() {
                         isLoading = true;
                       });
